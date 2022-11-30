@@ -1,10 +1,14 @@
 package com.zerobase.weather.controller;
 
+import com.zerobase.weather.domain.Diary;
 import com.zerobase.weather.service.DiaryService;
 import java.time.LocalDate;
+import java.util.List;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +24,20 @@ public class DiaryController {
 	void createDiary(@RequestParam @DateTimeFormat(iso= ISO.DATE) LocalDate date, @RequestBody String text) {
 		// 받은 값들을 서비스에 전달
 		diaryService.createDiary(date, text);
+
+	}
+
+	// 일기 조회
+	@GetMapping("/read/diary")
+	List<Diary> readDiary(@RequestParam  @DateTimeFormat(iso= ISO.DATE) LocalDate date) {
+		// 요청 파라미터로 넘어와야 하는 건 해당 날짜의 일기를 조회하는 것이므로 date 필요.
+		return diaryService.readDiary(date);
+	}
+	// 일기 조회 - 2. 조회 날짜 범위 지정하기
+	@GetMapping("/read/diaries")
+	List<Diary> readDiaries(@RequestParam @DateTimeFormat(iso= ISO.DATE) LocalDate startDate,
+							@RequestParam @DateTimeFormat(iso= ISO.DATE) LocalDate endDate) {
+		return  diaryService.readDiaries(startDate, endDate);
 
 	}
 
