@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -48,6 +49,13 @@ public class DiaryController {
 						@RequestBody String text) {
 
 		diaryService.updateDiary(date,text);
+	}
+
+	// 일기 삭제
+	@DeleteMapping("/delete/diary")
+	void deleteDiary(@RequestParam @DateTimeFormat(iso= ISO.DATE) LocalDate date) {
+
+		diaryService.deleteDiary(date);
 	}
 
 }

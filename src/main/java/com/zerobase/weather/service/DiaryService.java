@@ -71,6 +71,11 @@ public class DiaryService {
 
 	}
 
+	// 삭제
+	public void deleteDiary(LocalDate date) {
+		diaryRepository.deleteAllByDate(date);
+	}
+
 
 	private String getWeatherString() {
 

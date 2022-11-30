@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface DiaryRepository extends JpaRepository <Diary, Integer>{
@@ -17,5 +18,8 @@ public interface DiaryRepository extends JpaRepository <Diary, Integer>{
 
 	// 일기 수정
 	Diary getFirstByDate(LocalDate date);
+
+	@Transactional
+	void deleteAllByDate(LocalDate date);
 
 }
