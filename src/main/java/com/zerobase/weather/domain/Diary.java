@@ -25,4 +25,13 @@ public class Diary {
 	private String text;
 	private LocalDate date;
 
+
+	// DateWeather 해당 클래스 객체를 가져와서 다이어리 안에 넣어줄 ㄸ ㅐ사용
+	public void setDateWeather(DateWeather dateWeather) {
+		this.date = dateWeather.getDate();
+		this.weather = dateWeather.getWeather();
+		this.icon = dateWeather.getIcon();
+		this.temperature = dateWeather.getTemperature();
+	}
+
 }
