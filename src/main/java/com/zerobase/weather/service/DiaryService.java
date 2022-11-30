@@ -60,6 +60,17 @@ public class DiaryService {
 
 	}
 
+	// 수정
+	public void updateDiary(LocalDate date, String text) {
+		// 동일한 날짜일 경우 첫번 째 일기를 수정하는 것으로 가정
+		Diary nowDiary = diaryRepository.getFirstByDate(date);
+
+		nowDiary.setText(text);  // text 요청, 수정
+
+		diaryRepository.save(nowDiary); // 수정 사항 저장
+
+	}
+
 
 	private String getWeatherString() {
 

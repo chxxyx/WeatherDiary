@@ -15,4 +15,7 @@ public interface DiaryRepository extends JpaRepository <Diary, Integer>{
 	// 날짜 범위 제한 조회 함수
 	List<Diary> findAllByDateBetween(LocalDate startDate, LocalDate endDate);
 
+	// 일기 수정
+	Diary getFirstByDate(LocalDate date);
+
 }
